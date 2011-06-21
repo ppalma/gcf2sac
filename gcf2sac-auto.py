@@ -15,12 +15,21 @@ class Identity(pyinotify.ProcessEvent):
 	hour = event.name.split('_')[1][:4]
 	component = event.name.split('.')[0][-1] 
 	station = event.pathname.split('/')[-2].lower()
-	output = '%s_%s%s%s.sac'%(date,hour,station,component)
+	output = '%s_%s%s%s'%(date,hour,station,component)
 	input = event.pathname
 	folder = 'C%s'%date
-	cmd = 'gcf2sac %s %s -o:%s/%s'%(input,output,config.get('FOLDER','detination'),folder)
- 	os.system(cmd)	
+	dest = config.get('FOLDER','detination')+'/'+folder
 	
+	if event.name.split('.')[-1] == 'gcf':
+		fixedName = event.path+'/'+output+'.gcf'
+		os.rename(input,fixedName)
+		cmd = 'gcf2sac %s -o:%s'%(fixedName,dest)
+		a = os.system(cmd)	
+	else:
+		if not os.path.isdir(dest):
+			os.system('mkdir %s'%dest)
+		cmd = 'cp %s %s'%(event.pathname,dest)
+		os.system(cmd)		
 	#print 'Does nothing.'
 
 def on_loop(notifier):
