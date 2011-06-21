@@ -1,0 +1,68 @@
+== gcf2sac-auto ==
+
+_A Python script to convert the new .gcf files added to a specific directory_
+
+Author: 'Patricio Palma Solis <mail@ppalma.cl>'
+
+ Introducion
+
+Sort and convert large numbers of files can be tedious for a user.
+
+For them by joining the converter gcf2sac and pynotify features,
+you can perform this task automatically.
+
+Only a pattern in the name of the original files.
+
+
+== Documentation ==
+
+
+
+
+== Using ==
+
+Assuming that the original files are arranged in specific directories 
+and specific name in this way
+
+	/some/path/location/station/date_timeStationComponent.gcf
+
+example:  
+	/home/user/gcffiles/Hudson/Huds/20110621_1300hude.gcf
+	/home/user/gcffiles/Hudson/Huds/20110621_1300hudn.gcf
+	/home/user/gcffiles/Hudson/Huds/20110621_1300hudz.gcf
+
+
+And the converted file should be saved in a new directory 
+with the following structure 
+	
+	/some/path/Cdate/date_timeStationComponent.sac
+
+example:
+	/home/user/sacfiles/C20110621/20110621_1300hude.sac
+	/home/user/sacfiles/C20110621/20110621_1300hudn.sac
+	/home/user/sacfiles/C20110621/20110621_1300hudz.sac
+
+
+== Dependencies ==
+
+GCF2SAC : is a command line utility for converting GCF data to SAC format.
+	http://www.guralp.com/articles/20051017-software-gcf2sac/print
+
+
+== License ==
+
+	Copyright (C) 2006-2008  Patricio Palma S. All Rights Reserved.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+ 
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+ 
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
