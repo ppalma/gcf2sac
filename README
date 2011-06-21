@@ -1,9 +1,9 @@
-==gcf2sac-auto==
+# gcf2sac-auto
 _A Python script to convert the new .gcf files added to a specific directory_
 
 Author: 'Patricio Palma Solis <mail@ppalma.cl>'
 
-==Introducion==
+# Introducion
 
 Sort and convert large numbers of files can be tedious for a user.
 
@@ -13,12 +13,12 @@ you can perform this task automatically.
 Only a pattern in the name of the original files.
 
 
-==Documentation==
+# Documentation
 
 
 
 
-==Using==
+# Using
 
 Assuming that the original files are arranged in specific directories 
 and specific name in this way
@@ -42,12 +42,12 @@ example:
 	/home/user/sacfiles/C20110621/20110621_1300hudz.sac
 
 
-==Dependencies==
+# Dependencies
 
 GCF2SAC : is a command line utility for converting GCF data to SAC format.
 	http://www.guralp.com/articles/20051017-software-gcf2sac/print
 
 
-==License==
+# License
 
 
