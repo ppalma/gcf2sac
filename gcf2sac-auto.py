@@ -6,6 +6,9 @@
 import pyinotify
 import os
 import ConfigParser
+
+
+#TODO: http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/
 class Identity(pyinotify.ProcessEvent):
     def process_default(self, event):
         # Does nothing, just to demonstrate how stuffs could trivially
@@ -26,9 +29,10 @@ class Identity(pyinotify.ProcessEvent):
 		cmd = 'gcf2sac %s -o:%s'%(fixedName,dest)
 		a = os.system(cmd)	
 	else:
-		if not os.path.isdir(dest):
+		if not os.path.exists(dest):
 			os.system('mkdir %s'%dest)
-		cmd = 'cp %s %s'%(event.pathname,dest)
+		print dest
+		cmd = 'cp  -v %s %s'%(event.pathname,dest)
 		os.system(cmd)		
 	#print 'Does nothing.'
 
