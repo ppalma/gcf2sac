@@ -9,4 +9,16 @@
 # cp -v ./Melimoyu/Meli/20110620_1500*.gcf /home/ppalma/sngm/Melimoyu/Meli
 
 #rm $(find /home/ppalma/sngm -name "*sac") -rf && rm /home/ppalma/Desktop/COY2/* -Rf && rm $(find /home/ppalma/sngm -name "*gcf") -rf
+#cd /home/ppalma/Desktop/sngm
+cd /home/ppalma/.gvfs/ftp\ as\ user\ on\ 192.168.0.103/home/user/TramaDatos/
+echo "Loading"
+path=$(find . -name "20110621_*")
+echo "Done"
 
+for p in $path
+do
+	a=$(echo $p | awk -F'/' '{print $2}')
+	b=$(echo $p | awk -F'/' '{print $3}')
+	cp -v $p /home/ppalma/sngm/$a/$b
+	sleep 1s
+done
