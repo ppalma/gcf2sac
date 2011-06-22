@@ -1,0 +1,12 @@
+#mkdir -p {Fiordo/{Ayse,Chac,ayse,chac,coyq},Hudson/{Hud,Malva},Melimoyu/{Junt,Meli,Puyu,Rmb_}}
+ 
+# cp -v ./Fiordo/Chac/20110620_0200chac*.sac /home/ppalma/sngm/Fiordo/Chac/
+# cp -v ./Fiordo/coyq/20110620_0200coyq*.sac /home/ppalma/sngm/Fiordo/coyq
+# cp -v ./Fiordo/Ayse/20110620_0200ayse*.sac /home/ppalma/sngm/Fiordo/Ayse
+# cp -v ./Hudson/Malva/20110620_0200malva*.gcf /home/ppalma/sngm/Hudson/Malva
+# cp -v ./Melimoyu/Junt/20110620_0200*.gcf /home/ppalma/sngm/Melimoyu/Junt
+# cp -v ./Melimoyu/Puyu/20110620_0200*.gcf /home/ppalma/sngm/Melimoyu/Puyu
+# cp -v ./Melimoyu/Meli/20110620_1500*.gcf /home/ppalma/sngm/Melimoyu/Meli
+
+#rm $(find /home/ppalma/sngm -name "*sac") -rf && rm /home/ppalma/Desktop/COY2/* -Rf && rm $(find /home/ppalma/sngm -name "*gcf") -rf
+

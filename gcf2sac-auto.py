@@ -27,13 +27,15 @@ class Identity(pyinotify.ProcessEvent):
 		fixedName = event.path+'/'+output+'.gcf'
 		os.rename(input,fixedName)
 		cmd = 'gcf2sac %s -o:%s'%(fixedName,dest)
-		a = os.system(cmd)	
+#		a = os.system(cmd)
+		a = os.spawnlp(os.P_WAIT,'gcf2sac','gcf2sac',fixedName,'-o:'+dest)
+	
 	else:
 		if not os.path.exists(dest):
 			os.system('mkdir %s'%dest)
-		print dest
 		cmd = 'cp  -v %s %s'%(event.pathname,dest)
-		os.system(cmd)		
+		os.spawnlp(os.P_WAIT, 'cp', 'cp',event.pathname, dest)		
+	
 	#print 'Does nothing.'
 
 def on_loop(notifier):
