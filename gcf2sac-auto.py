@@ -14,28 +14,29 @@ class Identity(pyinotify.ProcessEvent):
         # Does nothing, just to demonstrate how stuffs could trivially
         # be accomplished after having processed statistics.
 	#print "%s  %s"%(event.pathname,event.name)
-	date = event.name.split('_')[0] 
-	hour = event.name.split('_')[1][:4]
-	component = event.name.split('.')[0][-1] 
-	station = event.pathname.split('/')[-2].lower()
-	output = '%s_%s%s%s'%(date,hour,station,component)
-	input = event.pathname
-	folder = 'C%s'%date
-	dest = config.get('FOLDER','detination')+'/'+folder
-	
-	if event.name.split('.')[-1] == 'gcf':
-		fixedName = event.path+'/'+output+'.gcf'
-		os.rename(input,fixedName)
-		cmd = 'gcf2sac %s -o:%s'%(fixedName,dest)
+	if event.name.split('.')[-1] == 'gcf' or event.name.split('.')[-1] == 'sac':
+		date = event.name.split('_')[0] 
+		hour = event.name.split('_')[1][:4]
+		component = event.name.split('.')[0][-1] 
+		station = event.pathname.split('/')[-2].lower()
+		output = '%s_%s%s%s'%(date,hour,station,component)
+		input = event.pathname
+		folder = 'C%s'%date
+		dest = config.get('FOLDER','destination')+'/'+folder
+
+
+		if event.name.split('.')[-1] == 'gcf':
+			fixedName = event.path+'/'+output+'.gcf'
+			os.rename(input,fixedName)
+			cmd = 'gcf2sac %s -o:%s'%(fixedName,dest)
 #		a = os.system(cmd)
-		a = os.spawnlp(os.P_WAIT,'gcf2sac','gcf2sac',fixedName,'-o:'+dest)
+			a = os.spawnlp(os.P_WAIT,'gcf2sac','gcf2sac',fixedName,'-o:'+dest)
 	
-	else:
-		if not os.path.exists(dest):
-			os.system('mkdir %s'%dest)
-		cmd = 'cp  -v %s %s'%(event.pathname,dest)
-		os.spawnlp(os.P_WAIT, 'cp', 'cp',event.pathname, dest)		
-	
+		else:
+			if not os.path.exists(dest):
+				os.system('mkdir %s'%dest)
+			cmd = 'cp  -v %s %s'%(event.pathname,dest)
+			os.spawnlp(os.P_WAIT, 'cp', 'cp',event.pathname, dest)		
 	#print 'Does nothing.'
 
 def on_loop(notifier):
@@ -52,10 +53,10 @@ def write_settings():
                 config.write(configfile)
 
 config = ConfigParser.ConfigParser()
-config.read('gcf2sac-auto.cfg')
+config.read('gcf2sac.cfg')
 #write_settings()
 wm = pyinotify.WatchManager()
 s = pyinotify.Stats()
 notifier = pyinotify.Notifier(wm, default_proc_fun=Identity(s), read_freq=5)
-wm.add_watch(config.get('FOLDER','watch'), pyinotify.IN_CREATE, rec=True, auto_add=True)
+wm.add_watch(config.get('FOLDER','watch'), pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)
 notifier.loop(callback=on_loop)
