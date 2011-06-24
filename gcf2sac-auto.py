@@ -49,14 +49,15 @@ def write_settings():
 	config.add_section('FOLDER')
 	config.set('FOLDER','detination','/home/user/COY2')
 	config.set('FOLDER','watch','/home/user/ftpmirror')
-	with open('gcf2sac-auto.cfg', 'wb') as configfile:
+	with open('/opt/gcf2sac/gcf2sac.cfg', 'wb') as configfile:
                 config.write(configfile)
 
 config = ConfigParser.ConfigParser()
-config.read('gcf2sac.cfg')
+config.read('/opt/gcf2sac/gcf2sac.cfg')
 #write_settings()
 wm = pyinotify.WatchManager()
 s = pyinotify.Stats()
 notifier = pyinotify.Notifier(wm, default_proc_fun=Identity(s), read_freq=5)
 wm.add_watch(config.get('FOLDER','watch'), pyinotify.IN_CLOSE_WRITE, rec=True, auto_add=True)
+print 'watching %s'%config.get('FOLDER','watch')
 notifier.loop(callback=on_loop)
