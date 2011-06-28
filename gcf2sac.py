@@ -77,11 +77,11 @@ for dir in remoteTree:
         for d in remoteTree[dir]:
                 output = '%s/%s%s'%(config.get('FOLDER','location'),dir,d)
                 match = today.strftime('%Y%m%d')+'*'
-                link = 'ftp://%s:%s@%s%s/%s%s%s'%(
+                link = 'ftp://%s:%s@%s/%s/%s%s%s'%(
                         config.get('FTP', 'user'),
                         config.get('FTP', 'passwd'),
                         config.get('FTP', 'address'),
-                        '/TramaDatos',#config.get('FTP', 'folder'),
+                        config.get('FTP', 'folder'),
                         dir,
                         d,
                         match
@@ -89,4 +89,4 @@ for dir in remoteTree:
 		cmd = 'wget -qnc -P %s %s -R *_%s*'%(output,link,strftime("%H", gmtime()))
                 print cmd
                 os.popen(cmd)
-
+notifier.stop()
