@@ -87,6 +87,6 @@ for dir in remoteTree:
                         match
                         )
 		cmd = 'wget -qnc -P %s %s -R *_%s*'%(output,link,strftime("%H", gmtime()))
-                print cmd
+                print output
                 os.popen(cmd)
 notifier.stop()
