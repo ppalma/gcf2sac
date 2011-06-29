@@ -81,7 +81,7 @@ def main(now=''):
 	        for d in remoteTree[dir]:
 	                output = '%s/%s%s'%(config.get('FOLDER','location'),dir,d)
 	                match = "%s*"%((now,today.strftime('%Y%m%d'))[now is ''])
-	                filter = '-R *_%s*'%((strftime("%H", gmtime()),'')[now is ''])
+	                filter = '%s'%('-R *_%s*'%(strftime("%H", gmtime())),'')[now is '']
 	                link = 'ftp://%s:%s@%s/%s/%s%s%s'%(
 	                        config.get('FTP', 'user'),
 	                        config.get('FTP', 'passwd'),
