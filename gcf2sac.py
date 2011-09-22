@@ -18,8 +18,8 @@ config.read('/opt/gcf2sac/gcf2sac.cfg')
 class Identity(pyinotify.ProcessEvent):
     def process_default(self, event):
 	print event.name
- #       if event.name.split('.')[-1] == 'gcf' or event.name.split('.')[-1] == 'sac':
-        if event.name.split('.')[-1] == 'gcf':
+	if event.name.split('.')[-1] == 'gcf' or event.name.split('.')[-1] == 'sac':
+       # if event.name.split('.')[-1] == 'gcf':
                 date = event.name.split('_')[0]
                 hour = event.name.split('_')[1][:4]
                 component = event.name.split('.')[0][-1]
@@ -34,12 +34,11 @@ class Identity(pyinotify.ProcessEvent):
                         fixedName = event.path+'/'+output+'.gcf'
                         os.rename(input,fixedName)
                         a = os.spawnlp(os.P_WAIT,'gcf2sac','gcf2sac',fixedName,'-o:'+dest)
-
- #               else:
- #                       if not os.path.exists(dest):
- #                               os.system('mkdir %s'%dest)
+		if event.name.split('.')[-1] == 'sac':	
+                        if not os.path.exists(dest):
+                                os.system('mkdir %s'%dest)
  #                       cmd = 'cp  -v %s %s'%(event.pathname,dest)
- #                       os.spawnlp(os.P_WAIT, 'cp', 'cp',event.pathname, dest)
+                        os.spawnlp(os.P_WAIT, 'mv', 'mv',event.pathname, dest)
 
 wm = pyinotify.WatchManager()
 notifier = pyinotify.ThreadedNotifier(wm, Identity())
