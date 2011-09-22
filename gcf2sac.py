@@ -105,13 +105,11 @@ if __name__ == "__main__":
         	opts, args = getopt.getopt(
 				sys.argv[1:], "hd:t:", ["help","date","time"],
 
-			#	 "d", ["date"]
 				)
  	except getopt.error, msg:
         	print msg
         	print "for help use --help"
         	sys.exit(2)
-    # process options
 	now = ''
 	for o, a in opts:
         	if o in ("-h", "--help"):
@@ -123,13 +121,5 @@ if __name__ == "__main__":
 			print "time %s"%a
 		else:
 			assert False, "unhandled option"
-    # process arguments
-   # for arg in args:
-    #    print arg
 	main(now)
 
-
-
-
-#main()
-	
