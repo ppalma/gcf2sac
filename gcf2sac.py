@@ -18,7 +18,8 @@ config.read('/opt/gcf2sac/gcf2sac.cfg')
 class Identity(pyinotify.ProcessEvent):
     def process_default(self, event):
 	print event.name
-        if event.name.split('.')[-1] == 'gcf' or event.name.split('.')[-1] == 'sac':
+ #       if event.name.split('.')[-1] == 'gcf' or event.name.split('.')[-1] == 'sac':
+        if event.name.split('.')[-1] == 'gcf':
                 date = event.name.split('_')[0]
                 hour = event.name.split('_')[1][:4]
                 component = event.name.split('.')[0][-1]
