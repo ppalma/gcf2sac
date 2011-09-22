@@ -45,9 +45,10 @@ example:
 
 == Dependencies ==
 
-GCF2SAC : is a command line utility for converting GCF data to SAC format.
-	http://www.guralp.com/articles/20051017-software-gcf2sac/print
+GCF2SAC 	: Is a command line utility for converting GCF data to SAC format.
+		http://www.guralp.com/articles/20051017-software-gcf2sac/print
 
+python-pyinotify: Simple Linux inotify Python bindings
 
 == License ==
 
