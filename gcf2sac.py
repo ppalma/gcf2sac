@@ -54,6 +54,7 @@ def signal_handler(signal, frame):
 
 import time
 def main():
+	print "PID main :",os.getpid()
 	print 'Loaded config file'
 	signal.signal(signal.SIGINT, signal_handler)
 
@@ -73,6 +74,7 @@ def daemonize ():
                 if pid > 0:
                         print 'Parent ending'
                         sys.exit(0)   # Exit first parent.
+		print "PID :",os.getpid()
         except OSError, e: 
                 sys.stderr.write ("fork #1 failed: (%d) %s\n" % (e.errno, e.strerror) )
                 sys.exit(1)
