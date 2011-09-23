@@ -7,8 +7,9 @@ import datetime
 import signal
 import sys
 from datetime import date
-from ftplib import FTP
 from time import gmtime, strftime
+import time,os
+import daemon
 
 config = ConfigParser.ConfigParser()
 config.read('/opt/gcf2sac/gcf2sac.cfg')
@@ -52,7 +53,6 @@ def signal_handler(signal, frame):
 	notifier.stop()
 	sys.exit(0)
 
-import time,os
 def main():
 	print "PID main :",os.getpid()
 	print 'Loaded config file'
@@ -84,9 +84,9 @@ if __name__ == "__main__":
             		sys.exit(0)
 		elif o in ("-b","--background"):
 			print "Running in background"
-			import daemon
-			with daemon.DaemonContext(detach_process=True):
+			with daemon.DaemonContext():
 				main()
+			print "Running in background"
 		else:
 			assert False, "Unhandled option"
  	main()
