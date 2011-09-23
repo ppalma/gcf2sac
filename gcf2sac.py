@@ -65,6 +65,20 @@ def main():
 		time.sleep(1)
 
 
+import sys, os
+def daemonize ():
+
+        try: 
+                pid = os.fork()
+                if pid > 0:
+                        print 'Parent ending'
+                        sys.exit(0)   # Exit first parent.
+		print "PID :",os.getpid()
+        except OSError, e: 
+                sys.stderr.write ("fork #1 failed: (%d) %s\n" % (e.errno, e.strerror) )
+                sys.exit(1)
+
+
 import getopt
 if __name__ == "__main__":
 	
@@ -83,9 +97,9 @@ if __name__ == "__main__":
             		sys.exit(0)
 		elif o in ("-b","--background"):
 			print "Running in background"
-			print "Not yet http://www.noah.org/wiki/Daemonize_Python"
+			daemonize()
 			main()
-			
 		else:
-			assert False, "unhandled option"
+			assert False, "Unhandled option"
+ 	main()
 
