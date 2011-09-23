@@ -52,7 +52,7 @@ def signal_handler(signal, frame):
 	notifier.stop()
 	sys.exit(0)
 
-import time
+import time,os
 def main():
 	print "PID main :",os.getpid()
 	print 'Loaded config file'
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 		elif o in ("-b","--background"):
 			print "Running in background"
 			import daemon
-			with daemon.DaemonContext():
+			with daemon.DaemonContext(detach_process=True):
 				main()
 		else:
 			assert False, "Unhandled option"
