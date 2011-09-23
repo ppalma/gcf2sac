@@ -80,8 +80,6 @@ def daemonize ():
                 sys.exit(1)
 	
 	# Decouple from parent environment.
-	os.chdir("/") 
-	os.umask(0) 
 	os.setsid() 
 
 	# Do second fork.
@@ -93,7 +91,9 @@ def daemonize ():
 	except OSError, e: 
 		sys.stderr.write ("fork #2 failed: (%d) %s\n" % (e.errno, e.strerror) )
 		sys.exit(1)
-
+	
+	os.chdir("/") 
+	os.umask(0) 
 import getopt
 if __name__ == "__main__":
 	
