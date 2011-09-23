@@ -48,6 +48,7 @@ example:
 GCF2SAC 	: Is a command line utility for converting GCF data to SAC format.
 		http://www.guralp.com/articles/20051017-software-gcf2sac/print
 
+python-daemon	: Library to implement a well-behaved Unix daemon process
 python-pyinotify: Simple Linux inotify Python bindings
 
 == License ==

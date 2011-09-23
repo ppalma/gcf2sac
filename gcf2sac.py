@@ -66,34 +66,6 @@ def main():
 		time.sleep(1)
 
 
-import sys, os
-def daemonize ():
-
-        try: 
-                pid = os.fork()
-                if pid > 0:
-                        print 'Parent ending'
-                        sys.exit(0)   # Exit first parent.
-		print "PID :",os.getpid()
-        except OSError, e: 
-                sys.stderr.write ("fork #1 failed: (%d) %s\n" % (e.errno, e.strerror) )
-                sys.exit(1)
-	
-	# Decouple from parent environment.
-	os.setsid() 
-
-	# Do second fork.
-	try: 
-		pid = os.fork() 
-		if pid > 0:
-			sys.exit(0)   # Exit second parent.
-		print "PID :",os.getpid()
-	except OSError, e: 
-		sys.stderr.write ("fork #2 failed: (%d) %s\n" % (e.errno, e.strerror) )
-		sys.exit(1)
-	
-	os.chdir("/") 
-	os.umask(0) 
 import getopt
 if __name__ == "__main__":
 	
@@ -112,8 +84,9 @@ if __name__ == "__main__":
             		sys.exit(0)
 		elif o in ("-b","--background"):
 			print "Running in background"
-			daemonize()
-			main()
+			import daemon
+			with daemon.DaemonContext():
+				main()
 		else:
 			assert False, "Unhandled option"
  	main()
