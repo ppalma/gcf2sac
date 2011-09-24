@@ -50,6 +50,7 @@ GCF2SAC 	: Is a command line utility for converting GCF data to SAC format.
 
 python-pyinotify: Simple Linux inotify Python bindings
 
+Daemonize :	http://www.noah.org/wiki/Daemonize_Python
 == License ==
 
 	Copyright (C) 2006-2008  Patricio Palma S. All Rights Reserved.
