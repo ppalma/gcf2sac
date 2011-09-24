@@ -1,5 +1,6 @@
 .settings
 *.swp
+*.pyc
 *~
 Test
 test*
