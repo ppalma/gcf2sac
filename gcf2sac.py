@@ -39,7 +39,10 @@ class Identity(pyinotify.ProcessEvent):
 			if event.name.split('.')[-1] == 'sac':	
                         	if not os.path.exists(dest):
                         	        os.system('mkdir %s'%dest)
+				print 'moving %s %s'%(event.pathname,dest)
                         	os.spawnlp(os.P_WAIT, 'mv', 'mv',event.pathname, dest)
+			#cmd = 'rsync -avr -e ssh /mnt/seismData/sac user@172.16.0.3:/home/user/'
+			#os.spawnlp(os.P_WAIT, 'rsync', 'rsync',event.pathname, dest)
 	except:
 		print "File doesn't match with name pattern: %s"%event.name
 
